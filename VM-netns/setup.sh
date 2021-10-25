@@ -14,9 +14,6 @@ ip netns add n1
 eth0="enp0s8"
 eth1="enp0s9"
 
-ip link set $eth0 netns n0
-ip link set $eth1 netns n1
-
 ip link set dev $eth0 down
 ip link set dev $eth1 down
 ip link set $eth0 netns n0
@@ -50,7 +47,7 @@ $netex n1 ethtool -K $eth1 rxvlan off
 
 echo "echo 1 > /proc/sys/net/ipv4/ip_forward" | $netex n1 bash
 
-$netex n1 ./dhcp_user_xdp -i $eth1 -d 10.0.0.3 -s 10.0.0.4
+$netex n1 ./dhcp_user_xdp -i $eth1 -d 10.0.0.2 -s 10.0.0.1
 
 $netex n0 wireshark -i $eth0 &
 $netex n1 wireshark -i $eth1 &
