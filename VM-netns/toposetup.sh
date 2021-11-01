@@ -43,7 +43,7 @@ $netex n1 ethtool -K $eth1 rxvlan off
 
 echo "echo 1 > /proc/sys/net/ipv4/ip_forward" | $netex n1 bash
 
-$netex n1 ./dhcp_user_xdp -i $eth1 -d 10.0.0.3 -s 10.0.0.4
+$netex n1 ./dhcp_user_xdp -i $eth1 -d 10.0.0.1 -s 10.0.0.2
 
 $netex n0 wireshark -i $eth0 &
 $netex n1 wireshark -i $eth1 &
